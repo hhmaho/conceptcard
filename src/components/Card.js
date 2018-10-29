@@ -23,16 +23,8 @@ class Card extends React.Component {
             return (
                 <div>
                     <p>{this.props.definition}</p>
-                    <button onClick={() => {
-                        this.setState({
-                            showDefinition: false
-                        })
-                    }} >Ok</button>
-                    <button onClick={() => {
-                        this.setState({
-                            showDefinition: true
-                        })
-                    }} >Niet ok</button>
+                    <button onClick={this.props.onOk} >Ok</button>
+                    <button onClick={this.props.onNok} >Niet ok</button>
                     {/* onClick Fout = continue(true) */}
                 </div>
             )
