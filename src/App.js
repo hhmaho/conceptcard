@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
+import Concept from './components/Concept'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        Hello world
-      </div>
-    );
-  }
-}
+const App = () =>
+  <Concept />
+// <Card frontBack={
+//   ["één", "twee", "drie", "vier"],
+//   [1, 2, 3, 4]
+// }/>
 
 export default App;
