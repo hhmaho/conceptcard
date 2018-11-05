@@ -1,0 +1,4 @@
+<div>
+                {this.props.cards.map((card) =>
+                    <Card definition={card.definition} concept={card.concept} />)}
+            </div >
