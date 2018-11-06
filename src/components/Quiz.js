@@ -21,6 +21,7 @@ class Quiz extends React.Component {
 
     this.onOk = this.onOk.bind(this);
     this.onNok = this.onNok.bind(this);
+    this.onShuffle = this.onShuffle.bind(this);
   }
 
   onOk() {
@@ -30,14 +31,25 @@ class Quiz extends React.Component {
       todo: restTodo,
       done: this.state.done.concat(topCard)
     });
+    console.log("stateOk", this.state);
   }
 
   onNok() {
-    console.log("state", this.state);
     const [topCard, ...restTodo] = this.state.todo;
     this.setState({
       todo: restTodo,
       toRedo: this.state.toRedo.concat(topCard)
+    });
+    console.log("stateNok", this.state);
+  }
+
+  onShuffle() {
+    // const shuffleArray = arr => arr.sort(() => Math.random() - 0.5);
+    const [topCard, ...restTodo] = this.state.todo;
+    this.setState({
+      todo: this.state.toRedo,
+      toRedo: restTodo,
+      done: this.state.done.concat(topCard)
     });
   }
 
@@ -54,7 +66,7 @@ class Quiz extends React.Component {
         />
       );
     } else if (this.state.toRedo.length > 0) {
-      return <RoundOver />;
+      return <RoundOver onShuffle={this.onShuffle} />;
     } else {
       return <GameOver />;
     }
