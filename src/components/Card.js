@@ -1,14 +1,5 @@
 import React from "react";
 
-// const Card = ({ card }) => (
-//     <div>
-//         <p>Concept = {card.concept}</p>
-//         <p>Definitie = {card.definition}</p>
-//         <button>Klopt</button>
-//         <button>Fout</button>
-//     </div>
-// )
-
 class Card extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +7,7 @@ class Card extends React.Component {
       showDefinition: false
     };
   }
+
   render() {
     // console.log(this.state)
 
@@ -26,7 +18,6 @@ class Card extends React.Component {
           <p>{this.props.definition}</p>
           <button onClick={this.props.onOk}>Ok</button>
           <button onClick={this.props.onNok}>Niet ok</button>
-          {/* onClick Fout = continue(true) */}
         </div>
       );
     } else {

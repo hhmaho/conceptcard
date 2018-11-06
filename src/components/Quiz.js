@@ -1,11 +1,13 @@
 import React from "react";
 import Card from "./Card";
+import RoundOver from "./RoundOver";
+import GameOver from "./GameOver";
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
+// function getRandomInt(max) {
+//   return Math.floor(Math.random() * Math.floor(max));
+// }
 
-console.log(getRandomInt(7));
+// const shuffleArray = arr => arr.sort(() => Math.random() - 0.5);
 
 class Quiz extends React.Component {
   constructor(props) {
@@ -13,53 +15,49 @@ class Quiz extends React.Component {
 
     this.state = {
       todo: props.cards,
-      toRedo: [9],
+      toRedo: [],
       done: []
     };
-  }
-  render() {
-    return (
-      <div>
-        <button
-          onClick={() => {
-            this.setState({
-              todo: this.props.cards.length - 1
-            });
-            console.log(this.props.cards);
-          }}
-        >
-          New card
-        </button>
-        <button
-          onClick={() => {
-            this.setState({
-              toRedo: this.state.toRedo
-            });
-            console.log(this.state.toRedo);
-          }}
-        >
-          Redo
-        </button>
-        <button
-          onClick={() => {
-            //
-            if (this.state.done) {
-              return console.log("done");
-            }
-          }}
-        >
-          Done
-        </button>
 
-        {/* {this.props.cards.map(card => (
-          <Card
-            key={card.concept}
-            definition={card.definition}
-            concept={card.concept}
-          />
-        ))} */}
-      </div>
-    );
+    this.onOk = this.onOk.bind(this);
+    this.onNok = this.onNok.bind(this);
+  }
+
+  onOk() {
+    //destructuring assignment
+    const [topCard, ...restTodo] = this.state.todo;
+    this.setState({
+      todo: restTodo,
+      done: this.state.done.concat(topCard)
+    });
+  }
+
+  onNok() {
+    console.log("state", this.state);
+    const [topCard, ...restTodo] = this.state.todo;
+    this.setState({
+      todo: restTodo,
+      toRedo: this.state.toRedo.concat(topCard)
+    });
+  }
+
+  render() {
+    if (this.state.todo.length > 0) {
+      const card = this.state.todo[0];
+      return (
+        <Card
+          key={card.concept}
+          concept={card.concept}
+          definition={card.definition}
+          onOk={this.onOk}
+          onNok={this.onNok}
+        />
+      );
+    } else if (this.state.toRedo.length > 0) {
+      return <RoundOver />;
+    } else {
+      return <GameOver />;
+    }
   }
 }
 

@@ -1,15 +1,11 @@
 import React from "react";
 
 class RoundOver extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   render() {
     return (
       <div>
-        <h4>You made it!</h4>
-        <button>Shuffle remaining cards</button>
+        <h4>No more cards!</h4>
+        <button onClick={this.props.onShuffle}>Shuffle remaining cards</button>
       </div>
     );
   }
