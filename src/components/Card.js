@@ -16,8 +16,12 @@ class Card extends React.Component {
         <div>
           <p>{this.props.concept}</p>
           <p>{this.props.definition}</p>
-          <button onClick={this.props.onOk}>Ok</button>
-          <button onClick={this.props.onNok}>Niet ok</button>
+          <button className="buttonOk" onClick={this.props.onOk}>
+            Ok
+          </button>
+          <button className="buttonNok" onClick={this.props.onNok}>
+            Niet ok
+          </button>
         </div>
       );
     } else {
@@ -41,3 +45,13 @@ class Card extends React.Component {
 }
 
 export default Card;
+
+// <p style="font-family: Arial;">
+{
+  /* <style>
+p {
+  color: red;
+  font-size: 20px;
+}
+</style> */
+}
