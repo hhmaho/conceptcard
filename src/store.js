@@ -26,13 +26,15 @@ export function loadDeck(cards) {
 //reducer
 
 function reducer(state, action) {
-  console.log("state "state);
-  console.log("action "action);
+  // console.log("state ", state);
+  // console.log("action ", action);
   if (action.type === "cardOk") {
     return {};
   }
   //if
   return state;
 }
+
 const store = createStore(reducer, initialState);
+
 export default store;
