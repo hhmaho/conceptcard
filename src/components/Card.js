@@ -15,7 +15,7 @@ class Card extends React.Component {
       return (
         <div>
           <p>{this.props.concept}</p>
-          <p>{this.props.definition}</p>
+          <p id="answer">{this.props.definition}</p>
           <button className="buttonOk" onClick={this.props.onOk}>
             Ok
           </button>
@@ -45,13 +45,3 @@ class Card extends React.Component {
 }
 
 export default Card;
-
-// <p style="font-family: Arial;">
-{
-  /* <style>
-p {
-  color: red;
-  font-size: 20px;
-}
-</style> */
-}
