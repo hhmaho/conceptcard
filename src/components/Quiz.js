@@ -26,6 +26,7 @@ class Quiz extends React.Component {
 }
 
 export default connect(state => ({
-  todo: [state, state],
-  toRedo: [state, state]
+  todo: state.todo,
+  toRedo: state.toRedo,
+  done: state.done
 }))(Quiz);

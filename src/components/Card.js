@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { cardOk, cardNok } from "../store";
 
 class Card extends React.Component {
   constructor(props) {
@@ -45,4 +46,18 @@ class Card extends React.Component {
   }
 }
 
-export default connect()(Card);
+const mapDispatchToProps = dispatch => {
+  return {
+    onOk: () => {
+      dispatch(cardOk());
+    },
+    onNok: () => {
+      dispatch(cardNok());
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Card);
