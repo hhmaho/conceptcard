@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 class Card extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class Card extends React.Component {
   }
 
   render() {
-    // console.log(this.state)
+    console.log(this.props);
 
     if (this.state.showDefinition) {
       return (
@@ -44,4 +45,4 @@ class Card extends React.Component {
   }
 }
 
-export default Card;
+export default connect()(Card);

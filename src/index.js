@@ -3,9 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import App from "./App";
-import store, { loadDeck, cardNok, cardOk, shuffleDeck } from "./store";
+import store, { loadDeck } from "./store";
+import { Provider } from "react-redux";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
 store.subscribe(() => {
   console.log("new state:", store.getState());
@@ -18,8 +24,3 @@ store.dispatch(
     { concept: "345", definition: "abc" }
   ])
 );
-
-store.dispatch(cardNok());
-store.dispatch(cardNok());
-store.dispatch(cardOk());
-store.dispatch(shuffleDeck());
