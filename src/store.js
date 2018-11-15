@@ -2,7 +2,7 @@ import { createStore } from "redux";
 
 const initialState = {
   todo: undefined,
-  redo: undefined,
+  toRedo: undefined,
   done: undefined
 };
 
@@ -26,11 +26,32 @@ export function loadDeck(cards) {
 //reducer
 
 function reducer(state, action) {
-  // console.log("state ", state);
-  // console.log("action ", action);
+  const [topCard, ...restTodo] = state.todo;
   if (action.type === "cardOk") {
-    return {};
+    return {
+      todo: restTodo,
+      done: state.done.concat(topCard)
+    };
   }
+  if (action.type === "cardNok") {
+    return {
+      todo: restTodo,
+      toRedo: state.toRedo.concat(topCard)
+    };
+  }
+  if (action.type === "shuffleDeck") {
+    return {
+      todo: state.toRedo,
+      toRedo: restTodo,
+      done: state.done.concat(topCard)
+    };
+  }
+  if (action.type === "loadDeck") {
+    return {
+      cards: action.payload
+    };
+  }
+
   //if
   return state;
 }
